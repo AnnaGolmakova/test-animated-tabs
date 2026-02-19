@@ -1,4 +1,4 @@
-# Pure CSS Page
+# Animated Tabs
 
 A minimalist animated tab interface built with SvelteKit, featuring smooth animations powered by Motion. The project showcases a device mockup design with animated tab indicators and keyboard navigation.
 
@@ -19,13 +19,6 @@ A minimalist animated tab interface built with SvelteKit, featuring smooth anima
 - **Styling**: Pure CSS with CSS custom properties
 - **Build Tool**: Vite
 - **Package Manager**: Bun (compatible with npm/pnpm/yarn)
-
-## Getting Started
-
-### Prerequisites
-
-- Node.js 18+ or Bun
-- A modern web browser
 
 ### Installation
 
