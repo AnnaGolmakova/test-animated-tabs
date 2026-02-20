@@ -12,8 +12,8 @@
 	let svgElement: SVGSVGElement | undefined = $state();
 
 	const bounce = {
-		duration: 0.6,
-		ease: bounceEase
+		duration: 0.4,
+		ease: smoothWaveEase
 	};
 
 	const spring = {
@@ -23,24 +23,16 @@
 	};
 
 	// From https://easings.net/#easeOutBounce
-	function bounceEase(x: number) {
-		const n1 = 7.5625;
-		const d1 = 2.75;
+	function smoothWaveEase(x: number) {
+		const frequency = 2;
+		const decay = 3;
 
-		if (x < 1 / d1) {
-			return n1 * x * x;
-		} else if (x < 2 / d1) {
-			return n1 * (x -= 1.5 / d1) * x + 0.75;
-		} else if (x < 2.5 / d1) {
-			return n1 * (x -= 2.25 / d1) * x + 0.9375;
-		} else {
-			return n1 * (x -= 2.625 / d1) * x + 0.984375;
-		}
+		return 1 - Math.pow(1 - x, decay) * Math.cos(frequency * x * Math.PI);
 	}
 
 	$effect(() => {
 		if (svgElement) {
-			const targetHeight = isActive ? 16 : 0;
+			const targetHeight = isActive ? 15 : 0;
 			const transition = isActive ? bounce : spring;
 
 			animate(svgElement, { height: targetHeight }, transition);
@@ -60,14 +52,14 @@
 	<svg
 		bind:this={svgElement}
 		class="indicator"
-		width="87"
+		width="93"
 		height={isActive ? 16 : 0}
-		viewBox="0 0 87 16"
+		viewBox="0 0 93 15"
 		fill="none"
 		xmlns="http://www.w3.org/2000/svg"
 	>
 		<path
-			d="M43.9242 0.000965479C61.584 0.136281 66.9243 13.9992 86.9243 13.9992V16.0001H43.4242L0 16L9.24021e-05 13.9992C18.0001 13.9992 26.2644 -0.13435 43.9242 0.000965479Z"
+			d="M93 14.9999H0C19.2414 14.9999 28.1568 -0.126067 47.0345 0.000791219C65.9121 0.127649 71.6207 14.9999 93 14.9999Z"
 			fill="currentColor"
 		/>
 	</svg>
